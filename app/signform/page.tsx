@@ -2,8 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import axios from "axios";
 
 const SignForm = () => {
+
+
+    const { executeRecaptcha }: any = useGoogleReCaptcha;
+
     const [getter, setGetter] = useState<{
         name: string,
         lastname: string
@@ -22,7 +28,10 @@ const SignForm = () => {
         city: ''
     })
 
-    const formHandler: any = (e: React.FormEvent<HTMLFormElement>) => {
+    const [submit, setSubmit] = useState("")
+
+    const formHandler: any = async (e: React.FormEvent<HTMLFormElement>) => {
+
         const inputElement = e.target as HTMLInputElement;
         const name = inputElement.name;
         const value = inputElement.value;
@@ -32,8 +41,37 @@ const SignForm = () => {
         }));
     }
 
+    const submitHandler = async () => {
+        if(!executeRecaptcha) {
+            console.log("recapthca not available!")
+            return;
+        }
+        const gRecaptchaToken = await executeRecaptcha('inquirySubmit');
+
+        const response = await axios({
+            method: "post",
+            url: '/api/recaptchaSubmit',
+            data: {
+                gRecaptchaToken
+            },
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+            },
+        });
+
+        if(response?.data?.success === true) {
+            console.log(`Success with score: ${response?.data?.score}`);
+            setSubmit("ReCaptcha verified and Form Submitted!")
+        }else {
+            console.log(`Failure with score: ${response?.data?.score}`);
+            setSubmit("Failed to verify recaptch! You must be a robot!")
+        }
+
+    }
+
     return (
-        <form action="/api/form" method="post" className="relative py-3 sm:max-w-xl sm:mx-auto">
+        <form action="/api/form" method="post" className="relative py-3 sm:max-w-xl sm:mx-auto" onSubmit={submitHandler}>
             <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
                 <div className="max-w-md mx-auto">
                     <div className="mt-5">

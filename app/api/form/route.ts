@@ -10,9 +10,9 @@ export async function POST(req: NextRequest) {
     const lastname = String(formData.get('lastname'));
     const gender = String(formData.get('gender'));
     const age = String(formData.get('age'));
-    const shiftTime = String(formData.get('free_shift'));
-    const weekTime = String(formData.get('week_range'));
-    const city = String(formData.get('province'));
+    const shiftTime = String(formData.get('shiftTime'));
+    const weekTime = String(formData.get('weekTime'));
+    const city = String(formData.get('city'));
 
     await supabase
     .from('pharmashift_users')

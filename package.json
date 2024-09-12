@@ -13,15 +13,16 @@
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "autoprefixer": "10.4.17",
+    "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "geist": "^1.2.1",
     "lucide-react": "^0.436.0",
     "next": "latest",
     "next-themes": "^0.3.0",
     "prettier": "^3.3.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-google-recaptcha-v3": "^1.10.1"
   },
   "devDependencies": {
     "@types/node": "20.10.6",

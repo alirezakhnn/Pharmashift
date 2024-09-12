@@ -24,7 +24,7 @@ const ShowTable = () => {
         };
 
         fetchData();
-    }, [tableData]);
+    }, []);
 
     return (
         <div className="table-container grid justify-center my-20">
