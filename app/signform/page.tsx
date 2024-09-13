@@ -75,7 +75,7 @@ const SignForm = () => {
     return (
         <div className="grid sm:grid-cols-1 sm:gap-y-16 md:grid-cols-2 gap-x-8 items-center">
             <form action="/api/form" method="post" className="relative py-3 sm:max-w-xl sm:mx-auto" onSubmit={submitHandler}>
-                <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow-md shadow-gray-300 rounded-3xl sm:p-10">
+                <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow-sm shadow-[--purple-base] rounded-3xl sm:p-10">
                     <div className="max-w-md mx-auto">
                         <div className="mt-5">
                             <div className="flex justify-between gap-3"> <div>

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { MessageBoxIcon } from "@/components/ui/icons";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,7 +19,6 @@ export default async function Index() {
           <Button variant="outline"><Link href="/showtable">متقاضیان تبادل شیفت</Link></Button>
         </div>
       </div>
-      <MessageBoxIcon />
     </main>
   );
 }

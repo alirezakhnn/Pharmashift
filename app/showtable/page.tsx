@@ -33,7 +33,7 @@ const ShowTable = () => {
                 <thead>
                     <tr>
                         {headers.map((header) => (
-                            <th className="px-3 py-2 text-xl bg-blue-400"
+                            <th className="px-3 py-2 text-xl bg-[--purple-base] text-white"
                                 key={header}>{header}</th>
                         ))}
                     </tr>
