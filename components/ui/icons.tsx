@@ -28,7 +28,7 @@ const MessageBoxIcon = () => {
   display: flex;
   position: fixed;
   left:6vw;
-  top:80vh;
+  top:85vh;
 }
 
 .background {

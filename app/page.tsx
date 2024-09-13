@@ -14,10 +14,10 @@ export default async function Index() {
       </div>
       <div className="grid gap-y-3 w-4/3 px-2">
         <h1 className="text-[45px] font-bold xxs:text-center md:text-right">دستیار هوشمند تبادل شیفت داروسازان!</h1>
-        <p>به فارماشیفت، اولین سامانه تبادل شیفت مسئولین فنی داروساز، خوش آمدید.</p>
+        <p className="xxs:text-center md:text-right">به فارماشیفت، اولین سامانه تبادل شیفت مسئولین فنی داروساز، خوش آمدید.</p>
         <div className="xxs:grid md:flex gap-4 mt-4">
           <Button><Link href="/signform">ثبت نام داروسازان</Link></Button>
-          <Button variant="outline"><Link href="/">متقاضیان تبادل شیفت</Link></Button>
+          <Button variant="outline"><Link href="/showtable">متقاضیان تبادل شیفت</Link></Button>
         </div>
       </div>
       <MessageBoxIcon />
