@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion'
 
 const headers = ["name", "lastname", "gender", "age", "shiftTime", "weekTime", "city"];
 
@@ -12,7 +13,6 @@ const formatPersianNumber = (num: any) => {
 
 const ShowTable = () => {
     const [tableData, setTableData] = useState<any[]>([]);
-    const [sortConfig, setSortConfig] = useState({ key: "age", direction: "ascending" });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,33 +39,15 @@ const ShowTable = () => {
 
     }, []);
 
-    useEffect(() => {
-        if (tableData.length > 0) {
-            const sortedData = [...tableData].sort((a, b) => {
-                const aValue = typeof a[sortConfig.key] === 'string' ? a[sortConfig.key] : Number(a[sortConfig.key]);
-                const bValue = typeof b[sortConfig.key] === 'string' ? b[sortConfig.key] : Number(b[sortConfig.key]);
-
-                if (sortConfig.direction === "ascending") {
-                    return aValue > bValue ? 1 : -1;
-                } else {
-                    return aValue < bValue ? 1 : -1;
-                }
-            });
-            setTableData(sortedData);
-        }
-    }, [sortConfig, tableData]);
-
-    const requestSort = (key: string) => {
-        let direction = "ascending";
-        if (sortConfig.key === key && sortConfig.direction === "ascending") {
-            direction = "descending";
-        }
-        setSortConfig({ key, direction });
+    const pageAnimate = {
+        initial: { opacity: 0, y: 30 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.5 },
     };
 
     return (
-        <>
-            <h2 className="font-bold text-center text-[35px]">لیست متقاضیان براساس،نام،نام خانوادگی،جنسیت، سن،زمان شیفت ازاد در طول هفته و محل سکونت</h2>
+        <motion.div {...pageAnimate}>
+            <h2 className="font-bold text-center text-[35px] mb-5">لیست متقاضیان براساس،نام،نام خانوادگی،جنسیت، سن،زمان شیفت ازاد در طول هفته و محل سکونت</h2>
             <div className="relative overflow-hidden shadow-md sm:rounded-lg">
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -119,7 +101,7 @@ const ShowTable = () => {
                     </Button>
                 </Link>
             </div>
-        </>
+        </motion.div>
     );
 };
 

@@ -6,9 +6,15 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import {motion} from "framer-motion";
 
 const SignForm = () => {
 
+    const pageAnimate = {
+        initial: { opacity: 0, y: 30 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.5 },
+      };
 
     const { executeRecaptcha }: any = useGoogleReCaptcha;
 
@@ -73,8 +79,8 @@ const SignForm = () => {
     }
 
     return (
-        <div className="grid sm:grid-cols-1 sm:gap-y-16 md:grid-cols-2 gap-x-8 items-center">
-            <form action="/api/form" method="post" className="relative py-3 sm:max-w-xl sm:mx-auto" onSubmit={submitHandler}>
+        <motion.div {...pageAnimate} className="grid sm:grid-cols-1 sm:gap-y-16 md:grid-cols-2 gap-x-8 items-center">
+            <form action="/api/form" method="post" className="relative py-3 sm:max-w-xl sm:mx-auto dark:text-black" onSubmit={submitHandler}>
                 <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow-sm shadow-[--purple-base] rounded-3xl sm:p-10">
                     <div className="max-w-md mx-auto">
                         <div className="mt-5">
@@ -215,7 +221,7 @@ const SignForm = () => {
                 </div>
             </form>
             <Image src="/undraw_doctors_p6aq.svg" width={500} height={300} alt="doctors_picture" />
-        </div>
+        </motion.div>
     );
 };
 
